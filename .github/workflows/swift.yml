@@ -7,15 +7,18 @@ on:
     branches: [ main ]
 
 jobs:
+  preBuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Super-Linter
+        uses: github/super-linter@v4.8.7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FILTER_REGEX_EXCLUDE: .*.swift
   build:
-
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v2
-    - name: Super-Linter
-      uses: github/super-linter@v4.8.7
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Lint
       run: swift run swift-format -r
