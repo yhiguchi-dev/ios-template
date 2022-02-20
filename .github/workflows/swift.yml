@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  pre-build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
