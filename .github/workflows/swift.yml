@@ -15,7 +15,7 @@ jobs:
         uses: github/super-linter@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          FILTER_REGEX_EXCLUDE: .*.swift
+          FILTER_REGEX_EXCLUDE: .+\.swift
   build:
     runs-on: macos-latest
     steps:
