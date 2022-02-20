@@ -6,9 +6,11 @@ import Quick
 final class TemplateViewTests: QuickSpec {
   override func spec() {
     describe(
-      "",
-      closure: {
-
-      })
+      "test"
+    ) {
+      it("test") {
+        expect(TemplateView.init().text).to(equal("Hello, World!"))
+      }
+    }
   }
 }

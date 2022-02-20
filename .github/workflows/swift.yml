@@ -7,18 +7,25 @@ on:
     branches: [ main ]
 
 jobs:
-  lint:
+  pre-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Super-Linter
-        uses: github/super-linter@v4.8.7
+        uses: github/super-linter@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FILTER_REGEX_EXCLUDE: .*.swift
-  swift-lint:
+  build:
+    needs: pre-build
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: .build
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
     - name: Lint
       run: swift run swift-format lint -r ./Package.swift -r ./Template/ -r ./TemplateView
