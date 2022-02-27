@@ -30,8 +30,7 @@ platform :ios do
       scheme: "TemplateView",
       derived_data_path: ENV["DERIVED_DATA_PATH"],
       devices: ["iPhone 8"],
-      skip_build: true,
-      result_bundle: true
+      skip_build: true
     )
   end
 end
