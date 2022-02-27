@@ -28,8 +28,6 @@ jobs:
         with:
           ruby-version: '3.1'
           bundler-cache: true
-      - name: echo env
-        run: echo "$HOME"
       - name: Run lint
         run: bundle exec fastlane lint
       - name: Run Test
