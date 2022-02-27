@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: macos-latest
     env:
-      DERIVED_DATA_PATH: ${HOME}/Library/Developer/Xcode/DerivedData
+      DERIVED_DATA_PATH: $HOME/Library/Developer/Xcode/DerivedData
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
