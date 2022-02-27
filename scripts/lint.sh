@@ -2,8 +2,9 @@
 
 set -eux
 
-cd $(dirname $0)
-cd ..
+readonly WORK_DIR=$(dirname $0)/../
+
+cd ${WORK_DIR}
 
 files=$(git ls-files | grep ".\+\.swift")
 
