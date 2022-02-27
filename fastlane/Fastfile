@@ -23,9 +23,14 @@ platform :ios do
     end
   end
 
-  desc "Description of what the lane does"
-  lane :custom_lane do
-
-    # add actions here: https://docs.fastlane.tools/actions
+  desc "Runs Test"
+  lane :test do
+    scan(
+      package_path: "./TemplateView",
+      scheme: "TemplateView",
+      derived_data_path: ENV["DERIVED_DATA_PATH"],
+      devices: ["iPhone 8"],
+      skip_build: true
+    )
   end
 end
