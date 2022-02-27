@@ -17,9 +17,14 @@ jobs:
           key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
           restore-keys: |
             ${{ runner.os }}-spm-
-      - name: Lint
-        run: swift run swift-format lint -r ./Package.swift -r ./Template/ -r ./TemplateView
       - name: Select Xcode version
         run: sudo xcode-select -s '/Applications/Xcode_13.2.1.app/Contents/Developer'
       - name: Show Xcode version
         run: xcodebuild -version
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+      - name: Run lint
+        run: bundle exec fastlane lint
