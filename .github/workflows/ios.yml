@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: macos-latest
     env:
-      DERIVED_DATA_PATH: $HOME/Library/Developer/Xcode/DerivedData
+      DERIVED_DATA_PATH: ~/Library/Developer/Xcode/DerivedData
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -29,7 +29,7 @@ jobs:
           ruby-version: '3.1'
           bundler-cache: true
       - name: echo env
-        run: echo $HOME
+        run: echo "$HOME"
       - name: Run lint
         run: bundle exec fastlane lint
       - name: Run Test
