@@ -1,7 +1,7 @@
 name: Setup
 description: Setup Xcode and Ruby
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - uses: actions/cache@v2
       with:
