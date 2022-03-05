@@ -22,4 +22,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: fastlane/test_output/report.junit
+          path: fastlane/test_output/report.html
