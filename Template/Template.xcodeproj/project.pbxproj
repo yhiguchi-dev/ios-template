@@ -14,7 +14,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		37256C1727C0CA77002037A6 /* Template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Template.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3711C8BA27D5D4F100CBD6A5 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		3711C8BE27D5DC9F00CBD6A5 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		37256C1727C0CA77002037A6 /* Template Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Template Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37256C1A27C0CA77002037A6 /* TemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApp.swift; sourceTree = "<group>"; };
 		37256C1E27C0CA78002037A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37256C2127C0CA78002037A6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -44,7 +46,7 @@
 		37256C1827C0CA77002037A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37256C1727C0CA77002037A6 /* Template.app */,
+				37256C1727C0CA77002037A6 /* Template Debug.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,6 +57,8 @@
 				37256C1A27C0CA77002037A6 /* TemplateApp.swift */,
 				37256C1E27C0CA78002037A6 /* Assets.xcassets */,
 				37256C2027C0CA78002037A6 /* Preview Content */,
+				3711C8BA27D5D4F100CBD6A5 /* Debug.xcconfig */,
+				3711C8BE27D5DC9F00CBD6A5 /* Release.xcconfig */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -94,7 +98,7 @@
 				37256C2927C0CB0A002037A6 /* TemplateView */,
 			);
 			productName = Template;
-			productReference = 37256C1727C0CA77002037A6 /* Template.app */;
+			productReference = 37256C1727C0CA77002037A6 /* Template Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -272,11 +276,12 @@
 		};
 		37256C2627C0CA78002037A6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3711C8BA27D5D4F100CBD6A5 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "\"Template/Preview Content\"";
 				DEVELOPMENT_TEAM = XBH86964ZD;
 				ENABLE_PREVIEWS = YES;
@@ -290,9 +295,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.yhiguchi.Template;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -301,11 +306,12 @@
 		};
 		37256C2727C0CA78002037A6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3711C8BE27D5DC9F00CBD6A5 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "\"Template/Preview Content\"";
 				DEVELOPMENT_TEAM = XBH86964ZD;
 				ENABLE_PREVIEWS = YES;
@@ -319,9 +325,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.yhiguchi.Template;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
