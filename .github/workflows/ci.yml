@@ -19,6 +19,11 @@ jobs:
         run: bundle exec fastlane lint
       - name: Run Test
         run: bundle exec fastlane test
+        env:
+          APP_IDENTIFIER: dev.yhiguchi.Template
+          BUNDLE_VERSION: 1.0
+          BUILD_DATE: $(date "+%Y-%m-%d-%H-%M")
+          DERIVED_DATA_PATH: ~/Library/Developer/Xcode/DerivedData
       - uses: actions/upload-artifact@v3
         with:
           name: test-results

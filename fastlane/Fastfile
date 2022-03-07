@@ -30,8 +30,16 @@ platform :ios do
     end
   end
 
+  desc "Runs generate config"
+  lane :config do
+    Dir.chdir("../scripts") do
+      sh("./config.sh")
+    end
+  end
+
   desc "Runs Test"
   lane :test do
+    config
     scan(
       package_path: "./TemplateView",
       scheme: "TemplateView",
