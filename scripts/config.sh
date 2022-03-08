@@ -6,4 +6,4 @@ cd $(dirname $0)/../
 
 mkdir -p config
 
-envsubst < ./scripts/Default.xcconfig.template > ./config/Default.xcconfig
+envsubst < ./scripts/Env.xcconfig.template > ./config/Env.xcconfig

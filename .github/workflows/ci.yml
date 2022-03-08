@@ -10,20 +10,20 @@ jobs:
   build:
     runs-on: macos-latest
     env:
+      BUNDLE_ID: dev.yhiguchi.Template
+      BUNDLE_VERSION: 1.0
+      BUILD_DATE: $(date "+%Y-%m-%d-%H-%M")
       DERIVED_DATA_PATH: ~/Library/Developer/Xcode/DerivedData
     steps:
       - uses: actions/checkout@v3
       - name: Setup Xcode and Ruby
         uses: ./.github/actions/setup
+      - name: Generate config
+        run: bundle exec fastlane config
       - name: Run lint
         run: bundle exec fastlane lint
       - name: Run Test
         run: bundle exec fastlane test
-        env:
-          APP_IDENTIFIER: dev.yhiguchi.Template
-          BUNDLE_VERSION: 1.0
-          BUILD_DATE: $(date "+%Y-%m-%d-%H-%M")
-          DERIVED_DATA_PATH: ~/Library/Developer/Xcode/DerivedData
       - uses: actions/upload-artifact@v3
         with:
           name: test-results
