@@ -10,12 +10,16 @@ jobs:
   build:
     runs-on: macos-latest
     env:
-      BUNDLE_VERSION: 1.0
+      BUNDLE_ID: dev.yhiguchi.Template
       DERIVED_DATA_PATH: ~/Library/Developer/Xcode/DerivedData
     steps:
       - uses: actions/checkout@v3
       - name: Setup Xcode and Ruby
         uses: ./.github/actions/setup
+      - name: Set env
+        run: |
+          echo "BUNDLE_VERSION=0.1.0" >> $GITHUB_ENV
+          echo "BUILD_DATE=$(date "+%Y-%m-%d-%H-%M")" >> $GITHUB_ENV
       - name: Generate env
         run: bundle exec fastlane generate_env
       - name: Run lint
@@ -25,4 +29,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: test-reports
-          path: fastlane/test_output/report.html
+          path: fastlane/test_output/

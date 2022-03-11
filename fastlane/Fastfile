@@ -18,8 +18,8 @@ default_platform(:ios)
 platform :ios do
   desc "Runs generate env"
   lane :generate_env do
-    Dir.chdir("../scripts") do
-      sh("./generate-env.sh")
+    Dir.chdir("../") do
+      sh("envsubst < ./Env.xcconfig.template > ./Env.xcconfig")
     end
   end
 
