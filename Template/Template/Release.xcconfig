@@ -7,9 +7,9 @@
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
-#include "../../config/Env"
+#include "../../Env"
 
 PRODUCT_NAME = $(TARGET_NAME)
-PRODUCT_BUNDLE_IDENTIFIER = dev.yhiguchi.Template
+PRODUCT_BUNDLE_IDENTIFIER = $(BUNDLE_ID)
 CURRENT_PROJECT_VERSION = $(BUNDLE_VERSION)
 MARKETING_VERSION = $(BUNDLE_VERSION)

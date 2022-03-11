@@ -16,10 +16,10 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Runs generate config"
-  lane :config do
+  desc "Runs generate env"
+  lane :generate_env do
     Dir.chdir("../scripts") do
-      sh("./config.sh")
+      sh("./generate-env.sh")
     end
   end
 

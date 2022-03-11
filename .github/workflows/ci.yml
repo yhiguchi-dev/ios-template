@@ -16,8 +16,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup Xcode and Ruby
         uses: ./.github/actions/setup
-      - name: Generate config
-        run: bundle exec fastlane config
+      - name: Generate env
+        run: bundle exec fastlane generate_env
       - name: Run lint
         run: bundle exec fastlane lint
       - name: Run Test
