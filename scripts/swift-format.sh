@@ -4,17 +4,17 @@ set -eux
 
 cd $(dirname $0)/../
 
-while getopts "lf" opt
-do
-  case $opt in
-    l) sub=lint;;
-    f) sub=format;;
-  esac
-done
+format=${FORMAT:=false}
+
+if "${format}"; then
+  option='format -i'
+else
+  option='lint'
+fi
 
 files=$(git ls-files | grep ".\+\.swift")
 
 for file in ${files};
 do
-  swift run swift-format ${sub} ${file}
+  swift run swift-format ${option} ${file}
 done

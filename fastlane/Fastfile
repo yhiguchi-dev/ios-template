@@ -26,14 +26,14 @@ platform :ios do
   desc "Runs format"
   lane :format do
     Dir.chdir("../scripts") do
-      sh("./swift-format.sh", "-f")
+      sh("FORMAT=true ./swift-format.sh")
     end
   end
 
   desc "Runs lint"
   lane :lint do
     Dir.chdir("../scripts") do
-      sh("./swift-format.sh", "-l")
+      sh("./swift-format.sh")
     end
   end
 
