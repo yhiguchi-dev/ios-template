@@ -10,6 +10,7 @@ jobs:
   build:
     runs-on: macos-latest
     env:
+      BUNDLE_NAME: Template
       BUNDLE_ID: dev.yhiguchi.Template
       DERIVED_DATA_PATH: ~/Library/Developer/Xcode/DerivedData
     steps:
