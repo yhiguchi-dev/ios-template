@@ -31,6 +31,9 @@ let package = Package(
       dependencies: []),
     .testTarget(
       name: "TemplateViewTests",
-      dependencies: ["TemplateView", "Quick", "Nimble", "OHHTTPStubs", "Cuckoo"]),
+      dependencies: [
+        "TemplateView", "Quick", "Nimble", .product(name: "OHHTTPStubs", package: "OHHTTPStubs"),
+        .product(name: "OHHTTPStubsSwift", package: "OHHTTPStubs"), "Cuckoo",
+      ]),
   ]
 )
