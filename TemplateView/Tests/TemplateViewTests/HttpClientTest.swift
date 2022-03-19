@@ -26,7 +26,7 @@ final class HttpClientTest: XCTestCase {
   }
 
   func testPostWithNoContent() async throws {
-    stubPostWithOk()
+    stubPostWithNoContent()
     let response: HttpResponse<EmptyResponse> = try await HttpClient.post(
       url: "http://localhost", requestBody: Request(value: "123"))
     XCTAssertEqual(response.isNoContent(), true)
@@ -64,7 +64,7 @@ final class HttpClientTest: XCTestCase {
   }
 
   func testGetWithNoContent() async throws {
-    stubGetWithOk()
+    stubGetWithNoContent()
     let response: HttpResponse<EmptyResponse> = try await HttpClient.get(
       url: "http://localhost")
     XCTAssertEqual(response.isNoContent(), true)
@@ -100,6 +100,7 @@ struct Response: Codable {
 }
 
 extension HttpClientTest {
+  @discardableResult
   func stubPostWithOk() -> HTTPStubsDescriptor {
     stub(condition: isHost("localhost") && isMethodPOST()) { _ in
       let data = """
@@ -112,6 +113,7 @@ extension HttpClientTest {
     }
   }
 
+  @discardableResult
   func stubPostWithNoContent() -> HTTPStubsDescriptor {
     stub(condition: isHost("localhost") && isMethodPOST()) { _ in
       HTTPStubsResponse(
@@ -120,6 +122,7 @@ extension HttpClientTest {
     }
   }
 
+  @discardableResult
   func stubPostWithBadRequest() -> HTTPStubsDescriptor {
     stub(condition: isHost("localhost") && isMethodPOST()) { _ in
       let data = """
@@ -133,6 +136,7 @@ extension HttpClientTest {
     }
   }
 
+  @discardableResult
   func stubGetWithOk() -> HTTPStubsDescriptor {
     stub(condition: isHost("localhost") && isMethodGET()) { _ in
       let data = """
@@ -145,6 +149,7 @@ extension HttpClientTest {
     }
   }
 
+  @discardableResult
   func stubGetWithNoContent() -> HTTPStubsDescriptor {
     stub(condition: isHost("localhost") && isMethodGET()) { _ in
       HTTPStubsResponse(
@@ -153,6 +158,7 @@ extension HttpClientTest {
     }
   }
 
+  @discardableResult
   func stubGetWithBadRequest() -> HTTPStubsDescriptor {
     stub(condition: isHost("localhost") && isMethodGET()) { _ in
       let data = """
