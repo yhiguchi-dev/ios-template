@@ -2,7 +2,7 @@
 
 set -eux
 
-cd $(dirname $0)/../
+cd "$(dirname "$0")"/../
 
 format=${FORMAT:=false}
 
@@ -16,5 +16,5 @@ files=$(git ls-files | grep ".\+\.swift")
 
 for file in ${files};
 do
-  swift run swift-format ${option} ${file}
+  swift run swift-format ${option} "${file}"
 done

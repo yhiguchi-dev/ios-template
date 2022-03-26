@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Rainbow",
+        "repositoryURL": "https://github.com/onevcat/Rainbow.git",
+        "state": {
+          "branch": null,
+          "revision": "626c3d4b6b55354b4af3aa309f998fae9b31a3d9",
+          "version": "3.2.0"
+        }
+      },
+      {
         "package": "swift-argument-parser",
         "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
         "state": {
@@ -26,6 +35,24 @@
           "branch": null,
           "revision": "75e60475d9d8fd5bbc16a12e0eaa2cb01b0c322e",
           "version": "0.50500.0"
+        }
+      },
+      {
+        "package": "XCResultKit",
+        "repositoryURL": "https://github.com/davidahouse/XCResultKit.git",
+        "state": {
+          "branch": null,
+          "revision": "2fe24c2675432c4b8c8d7ab0364e2760190b6fea",
+          "version": "0.9.3"
+        }
+      },
+      {
+        "package": "XCTestHTMLReport",
+        "repositoryURL": "https://github.com/XCTestHTMLReport/XCTestHTMLReport.git",
+        "state": {
+          "branch": "2.2.1",
+          "revision": "fca83895c13ac6dfdea40189e0fe37c6be11bcb4",
+          "version": null
         }
       }
     ]
