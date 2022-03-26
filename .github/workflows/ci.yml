@@ -30,4 +30,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: test-reports
-          path: fastlane/test_output/
+          path: TestReports/

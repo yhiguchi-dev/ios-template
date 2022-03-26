@@ -41,7 +41,6 @@ platform :ios do
   lane :test do
     Dir.chdir("../scripts") do
       sh("./test.sh")
-      sh("./test-report.sh")
     end
   end
 end
