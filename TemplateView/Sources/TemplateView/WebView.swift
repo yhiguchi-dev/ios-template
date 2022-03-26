@@ -3,6 +3,7 @@
 //
 
 import SwiftUI
+import UIKit
 import WebKit
 
 struct WebView: UIViewRepresentable {
