@@ -57,3 +57,4 @@ build-iPhoneSimulator/
 .envrc
 Env.xcconfig
 fastlane/readme.md
+TestReports/

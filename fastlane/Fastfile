@@ -39,13 +39,9 @@ platform :ios do
 
   desc "Runs Test"
   lane :test do
-    scan(
-      package_path: "./TemplateView",
-      scheme: "TemplateView",
-      derived_data_path: ENV["DERIVED_DATA_PATH"],
-      devices: ["iPhone 8"],
-      output_directory: "fastlane/test_output/TemplateView",
-      skip_build: true
-    )
+    Dir.chdir("../scripts") do
+      sh("./test.sh")
+      sh("./test-report.sh")
+    end
   end
 end
