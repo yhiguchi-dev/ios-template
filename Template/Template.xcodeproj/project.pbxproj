@@ -16,6 +16,8 @@
 /* Begin PBXFileReference section */
 		3711C8BA27D5D4F100CBD6A5 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		3711C8BE27D5DC9F00CBD6A5 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		371C811227F013300016089D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		371C811627F01F540016089D /* Info-Debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Debug.plist"; sourceTree = "<group>"; };
 		37256C1727C0CA77002037A6 /* Template Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Template Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37256C1A27C0CA77002037A6 /* TemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApp.swift; sourceTree = "<group>"; };
 		37256C1E27C0CA78002037A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -34,6 +36,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		371C811927F02B810016089D /* Environments */ = {
+			isa = PBXGroup;
+			children = (
+				3711C8BA27D5D4F100CBD6A5 /* Debug.xcconfig */,
+				3711C8BE27D5DC9F00CBD6A5 /* Release.xcconfig */,
+			);
+			name = Environments;
+			sourceTree = "<group>";
+		};
 		37256C0E27C0CA77002037A6 = {
 			isa = PBXGroup;
 			children = (
@@ -56,9 +67,10 @@
 			children = (
 				37256C1A27C0CA77002037A6 /* TemplateApp.swift */,
 				37256C1E27C0CA78002037A6 /* Assets.xcassets */,
+				371C811227F013300016089D /* Info.plist */,
+				371C811627F01F540016089D /* Info-Debug.plist */,
+				371C811927F02B810016089D /* Environments */,
 				37256C2027C0CA78002037A6 /* Preview Content */,
-				3711C8BA27D5D4F100CBD6A5 /* Debug.xcconfig */,
-				3711C8BE27D5DC9F00CBD6A5 /* Release.xcconfig */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -286,6 +298,7 @@
 				DEVELOPMENT_TEAM = XBH86964ZD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(INFOPLIST_FILE)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -318,6 +331,7 @@
 				DEVELOPMENT_TEAM = XBH86964ZD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(INFOPLIST_FILE)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
