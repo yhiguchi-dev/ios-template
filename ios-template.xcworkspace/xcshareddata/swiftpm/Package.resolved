@@ -11,47 +11,11 @@
         }
       },
       {
-        "package": "CwlCatchException",
-        "repositoryURL": "https://github.com/mattgallagher/CwlCatchException.git",
-        "state": {
-          "branch": null,
-          "revision": "35f9e770f54ce62dd8526470f14c6e137cef3eea",
-          "version": "2.1.1"
-        }
-      },
-      {
-        "package": "CwlPreconditionTesting",
-        "repositoryURL": "https://github.com/mattgallagher/CwlPreconditionTesting.git",
-        "state": {
-          "branch": null,
-          "revision": "c21f7bab5ca8eee0a9998bbd17ca1d0eb45d4688",
-          "version": "2.1.0"
-        }
-      },
-      {
-        "package": "Nimble",
-        "repositoryURL": "https://github.com/Quick/Nimble",
-        "state": {
-          "branch": "v9.2.1",
-          "revision": "c93f16c25af5770f0d3e6af27c9634640946b068",
-          "version": null
-        }
-      },
-      {
         "package": "OHHTTPStubs",
         "repositoryURL": "https://github.com/AliSoftware/OHHTTPStubs",
         "state": {
           "branch": "9.1.0",
           "revision": "12f19662426d0434d6c330c6974d53e2eb10ecd9",
-          "version": null
-        }
-      },
-      {
-        "package": "Quick",
-        "repositoryURL": "https://github.com/Quick/Quick",
-        "state": {
-          "branch": "v4.0.0",
-          "revision": "bd86ca0141e3cfb333546de5a11ede63f0c4a0e6",
           "version": null
         }
       }
