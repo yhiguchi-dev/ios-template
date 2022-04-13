@@ -6,7 +6,8 @@ import PackageDescription
 let package = Package(
   name: "TemplateView",
   platforms: [
-    .iOS(.v13)
+    .iOS(.v14),
+    .macOS(.v11),
   ],
   products: [
     // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -17,8 +18,6 @@ let package = Package(
   dependencies: [
     // Dependencies declare other packages that this package depends on.
     // .package(url: /* package url */, from: "1.0.0"),
-    .package(url: "https://github.com/Quick/Quick", revision: "v4.0.0"),
-    .package(url: "https://github.com/Quick/Nimble", revision: "v9.2.1"),
     .package(url: "https://github.com/AliSoftware/OHHTTPStubs", revision: "9.1.0"),
     .package(url: "https://github.com/Brightify/Cuckoo", revision: "1.6.0"),
   ],
@@ -31,7 +30,7 @@ let package = Package(
     .testTarget(
       name: "TemplateViewTests",
       dependencies: [
-        "TemplateView", "Quick", "Nimble", .product(name: "OHHTTPStubs", package: "OHHTTPStubs"),
+        "TemplateView", .product(name: "OHHTTPStubs", package: "OHHTTPStubs"),
         .product(name: "OHHTTPStubsSwift", package: "OHHTTPStubs"), "Cuckoo",
       ]),
   ]
