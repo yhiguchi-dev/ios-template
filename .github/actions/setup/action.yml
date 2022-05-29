@@ -10,7 +10,7 @@ runs:
         restore-keys: |
           ${{ runner.os }}-spm-
     - name: Select Xcode version
-      run: sudo xcode-select -s '/Applications/Xcode_13.2.1.app/Contents/Developer'
+      run: sudo xcode-select -s '/Applications/Xcode_13.3.1.app/Contents/Developer'
       shell: bash
     - name: Show Xcode version
       run: xcodebuild -version
