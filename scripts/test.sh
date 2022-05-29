@@ -5,7 +5,7 @@ set -eux
 cd "$(dirname "$0")"/../
 
 scheme=TemplateView
-destination='platform=iOS Simulator,name=iPhone 8,OS=15.2'
+destination='platform=iOS Simulator,name=iPhone 11,OS=15.4'
 
 rm -rf TestReports
 
