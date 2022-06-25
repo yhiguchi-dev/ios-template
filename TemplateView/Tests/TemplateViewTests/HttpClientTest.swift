@@ -16,8 +16,8 @@ final class HttpClientTest: XCTestCase {
 
   func testPostWithOk() async throws {
     stubPostWithOk()
-    let response: HttpResponse<Response> = try await HttpClient.post(
-      url: "http://localhost", requestBody: Request(value: "123"))
+    let response: Response<TestResponse> = try await HttpClient.post(
+      url: "http://localhost", requestBody: TestRequest(value: "123"))
     XCTAssertEqual(response.isSuccess(), true)
     if case .success(let code, let responseBody) = response {
       XCTAssertEqual(code, 200)
@@ -27,18 +27,18 @@ final class HttpClientTest: XCTestCase {
 
   func testPostWithNoContent() async throws {
     stubPostWithNoContent()
-    let response: HttpResponse<EmptyResponse> = try await HttpClient.post(
-      url: "http://localhost", requestBody: Request(value: "123"))
-    XCTAssertEqual(response.isNoContent(), true)
-    if case .noContent(let code) = response {
+    let response: Response<Void> = try await HttpClient.postNoBody(
+      url: "http://localhost", requestBody: TestRequest(value: "123"))
+    XCTAssertEqual(response.isSuccess(), true)
+    if case .success(let code, _) = response {
       XCTAssertEqual(code, 200)
     }
   }
 
   func testPostWithBadRequest() async throws {
     stubPostWithBadRequest()
-    let response: HttpResponse<EmptyResponse> = try await HttpClient.post(
-      url: "http://localhost", requestBody: Request(value: "123"))
+    let response: Response<Void> = try await HttpClient.postNoBody(
+      url: "http://localhost", requestBody: TestRequest(value: "123"))
     XCTAssertEqual(response.isClientError(), true)
     if case .clientError(let code, let message) = response {
       XCTAssertEqual(code, 400)
@@ -54,7 +54,7 @@ final class HttpClientTest: XCTestCase {
 
   func testGetWithOk() async throws {
     stubGetWithOk()
-    let response: HttpResponse<Response> = try await HttpClient.get(
+    let response: Response<TestResponse> = try await HttpClient.get(
       url: "http://localhost")
     XCTAssertEqual(response.isSuccess(), true)
     if case .success(let code, let responseBody) = response {
@@ -63,19 +63,9 @@ final class HttpClientTest: XCTestCase {
     }
   }
 
-  func testGetWithNoContent() async throws {
-    stubGetWithNoContent()
-    let response: HttpResponse<EmptyResponse> = try await HttpClient.get(
-      url: "http://localhost")
-    XCTAssertEqual(response.isNoContent(), true)
-    if case .noContent(let code) = response {
-      XCTAssertEqual(code, 200)
-    }
-  }
-
   func testGetWithBadRequest() async throws {
     stubGetWithBadRequest()
-    let response: HttpResponse<EmptyResponse> = try await HttpClient.get(
+    let response: Response<TestResponse> = try await HttpClient.get(
       url: "http://localhost")
     XCTAssertEqual(response.isClientError(), true)
     if case .clientError(let code, let message) = response {
@@ -91,11 +81,11 @@ final class HttpClientTest: XCTestCase {
   }
 }
 
-struct Request: Codable {
+struct TestRequest: Codable {
   let value: String
 }
 
-struct Response: Codable {
+struct TestResponse: Codable {
   let value: String
 }
 

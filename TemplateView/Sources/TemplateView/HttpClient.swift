@@ -6,64 +6,29 @@ import Foundation
 
 struct HttpClient {
   static func get<R: Decodable>(url: String) async throws
-    -> HttpResponse<R>
+    -> Response<R>
   {
-    let urlRequest = try urlRequest(url: url, httpMethod: HttpMethod.GET)
+    let urlRequest = try URLRequestCreator(url: url, method: HttpMethod.GET).create()
     let (data, response) = try await URLSession.shared.data(for: urlRequest)
-    return try resolve(code: response.statusCode, data: data)
+    return try ResponseResolver.resolve(data: data, response: response)
   }
 
-  static func post<T: Encodable, R: Decodable>(url: String, requestBody: T?) async throws
-    -> HttpResponse<R>
+  static func post<T: Encodable, R: Decodable>(url: String, requestBody: T) async throws
+    -> Response<R>
   {
-    let urlRequest = try urlRequest(url: url, httpMethod: HttpMethod.POST, requestBody: requestBody)
+    let urlRequest = try URLRequestCreator(url: url, method: HttpMethod.POST).create(
+      requestBody: requestBody)
     let (data, response) = try await URLSession.shared.data(for: urlRequest)
-    return try resolve(code: response.statusCode, data: data)
+    return try ResponseResolver.resolve(data: data, response: response)
   }
 
-  static func urlRequest(url: String, httpMethod: HttpMethod) throws -> URLRequest {
-    guard let url = URL(string: url) else {
-      throw HttpClientError.invalidUrl
-    }
-    var urlRequest = URLRequest(url: url)
-    urlRequest.httpMethod = httpMethod.rawValue
-    return urlRequest
-  }
-
-  static func urlRequest<T: Encodable>(url: String, httpMethod: HttpMethod, requestBody: T) throws
-    -> URLRequest
+  static func postNoBody<T: Encodable>(url: String, requestBody: T) async throws
+    -> Response<Void>
   {
-    var urlRequest = try urlRequest(url: url, httpMethod: httpMethod)
-    let encoder = JSONEncoder()
-    urlRequest.httpBody = try encoder.encode(requestBody)
-    return urlRequest
-  }
-
-  static func resolve<R: Decodable>(code: Int, data: Data?) throws -> HttpResponse<R> {
-    switch code {
-    case (200..<299):
-      if R.self == EmptyResponse.self {
-        return HttpResponse<R>.noContent(code: code)
-      }
-      guard let data = data else {
-        throw HttpClientError.invalidData
-      }
-      let decoder = JSONDecoder()
-      let responseBody = try decoder.decode(R.self, from: data)
-      return HttpResponse<R>.success(code: code, responseBody: responseBody)
-    case (400..<499):
-      if let data = data, let message = String(data: data, encoding: .utf8) {
-        return HttpResponse<R>.clientError(code: code, message: message)
-      }
-      return HttpResponse<R>.clientError(code: code)
-    case (500..<599):
-      if let data = data, let message = String(data: data, encoding: .utf8) {
-        return HttpResponse<R>.serverError(code: code, message: message)
-      }
-      return HttpResponse<R>.serverError(code: code)
-    default:
-      throw HttpClientError.unknownStatusCodeError(code: code)
-    }
+    let urlRequest = try URLRequestCreator(url: url, method: HttpMethod.POST).create(
+      requestBody: requestBody)
+    let (data, response) = try await URLSession.shared.data(for: urlRequest)
+    return try ResponseResolver.resolveNoBody(data: data, response: response)
   }
 }
 
@@ -85,26 +50,83 @@ extension URLSession {
   }
 }
 
+struct URLRequestCreator {
+  let url: String
+  let method: HttpMethod
+
+  func create() throws -> URLRequest {
+    guard let url = URL(string: url) else {
+      throw HttpClientError.invalidUrl
+    }
+    var urlRequest = URLRequest(url: url)
+    urlRequest.httpMethod = method.rawValue
+    return urlRequest
+  }
+
+  func create<T: Encodable>(requestBody: T) throws -> URLRequest {
+    var urlRequest = try create()
+    let encoder = JSONEncoder()
+    urlRequest.httpBody = try encoder.encode(requestBody)
+    return urlRequest
+  }
+}
+
+struct ResponseResolver {
+
+  static func resolve<R: Decodable>(data: Data?, response: HTTPURLResponse) throws -> Response<R> {
+    let code = response.statusCode
+    switch code {
+    case (200..<299):
+      guard let data = data else {
+        throw HttpClientError.invalidData
+      }
+      let decoder = JSONDecoder()
+      let responseBody = try decoder.decode(R.self, from: data)
+      return Response<R>.success(code: code, responseBody: responseBody)
+    default:
+      return try resolveError(data: data, code: code)
+    }
+  }
+
+  static func resolveNoBody(data: Data?, response: HTTPURLResponse) throws -> Response<Void> {
+    let code = response.statusCode
+    switch code {
+    case (200..<299):
+      return Response<Void>.success(code: code, responseBody: ())
+    default:
+      return try resolveError(data: data, code: code)
+    }
+  }
+
+  static func resolveError<R>(data: Data?, code: Int) throws -> Response<R> {
+    var message = ""
+    if let data = data, let messageValue = String(data: data, encoding: .utf8) {
+      message = messageValue
+    }
+    switch code {
+    case (400..<499):
+      return Response<R>.clientError(code: code, message: message)
+    case (500..<599):
+      return Response<R>.serverError(code: code, message: message)
+    default:
+      throw HttpClientError.unknownStatusCodeError(code: code)
+    }
+  }
+}
+
 enum HttpMethod: String {
   case POST
   case GET
 }
 
-enum HttpResponse<T> {
+enum Response<T> {
   case success(code: Int, responseBody: T)
-  case noContent(code: Int)
-  case clientError(code: Int, message: String = "")
-  case serverError(code: Int, message: String = "")
+  case clientError(code: Int, message: String)
+  case serverError(code: Int, message: String)
 
   func isSuccess() -> Bool {
     switch self {
     case .success: return true
-    default: return false
-    }
-  }
-  func isNoContent() -> Bool {
-    switch self {
-    case .noContent: return true
     default: return false
     }
   }
@@ -126,7 +148,4 @@ enum HttpClientError: Error {
   case invalidUrl
   case invalidData
   case unknownStatusCodeError(code: Int)
-}
-
-struct EmptyResponse: Decodable {
 }
